@@ -1,0 +1,32 @@
+
+**** Build of configuration Debug for project UART_communication ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/UART_communication" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2452__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.c", line 23: error #20: identifier "UCA0CTL1" is undefined
+"../main.c", line 23: error #20: identifier "UCSSEL_2" is undefined
+"../main.c", line 26: error #20: identifier "UCA0BR0" is undefined
+"../main.c", line 28: error #20: identifier "UCA0BR1" is undefined
+"../main.c", line 30: error #20: identifier "UCA0MCTL" is undefined
+"../main.c", line 30: error #20: identifier "UCBRS_1" is undefined
+"../main.c", line 33: error #20: identifier "UCA0STAT" is undefined
+"../main.c", line 33: error #20: identifier "UCLISTEN" is undefined
+"../main.c", line 35: error #20: identifier "UCSWRST" is undefined
+"../main.c", line 37: error #20: identifier "IE2" is undefined
+"../main.c", line 37: error #20: identifier "UCA0RXIE" is undefined
+"../main.c", line 37: error #20: identifier "UCA0TXIE" is undefined
+"../main.c", line 46: warning #2580-D: pragma vector= accepts numeric arguments or "unused_interrupts" but not USCIAB0TX_VECTOR
+"../main.c", line 49: error #20: identifier "UCA0TXBUF" is undefined
+"../main.c", line 54: warning #2580-D: pragma vector= accepts numeric arguments or "unused_interrupts" but not USCIAB0RX_VECTOR
+"../main.c", line 57: error #20: identifier "UCA0RXBUF" is undefined
+14 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

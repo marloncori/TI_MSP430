@@ -1,0 +1,17 @@
+
+**** Build of configuration Debug for project leds_btn_counter_2452 ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "leds_btn_counter_2452.out"'
+'Invoking: GNU Linker'
+"C:/Users/NUC/Desktop/TI_MSP430/energia-1.6.10E18-windows/energia-1.6.10E18/hardware/tools/msp430/bin/msp430-gcc.exe" -fno-exceptions -DF_CPU=16000000L -DENERGIA_MSP-EXP430G2553LP -DENERGIA_ARCH_MSP430 -DENERGIA=18 -DARDUINO=10610 -O2 -ffunction-sections -fdata-sections -g -gdwarf-3 -gstrict-dwarf -w -Wall -fno-threadsafe-statics -mmcu=msp430g2553 -Wl,-Map,"leds_btn_counter_2452.map" -Wl,--gc-sections -L"C:/Users/NUC/workspace_v7/msp430_MSP-EXP430G2553LP_core/Debug" -Wl,--undefined,main -w -g -O2 -fno-rtti -fno-exceptions -o"leds_btn_counter_2452.out" "./leds_btn_counter_2452.o"  -Wl,--start-group -lmsp430_MSP-EXP430G2553LP_core -lm -Wl,--end-group 
+'Finished building target: "leds_btn_counter_2452.out"'
+ 
+'Building files: "leds_btn_counter_2452.out"'
+'Invoking: GNU Objcopy Utility'
+"C:/Users/NUC/Desktop/TI_MSP430/energia-1.6.10E18-windows/energia-1.6.10E18/hardware/tools/msp430/bin/msp430-objcopy.exe" -O ihex --remove-section .eeprom  "leds_btn_counter_2452.out"  "leds_btn_counter_2452.hex"
+'Finished building: "leds_btn_counter_2452.out"'
+ 
+
+**** Build Finished ****

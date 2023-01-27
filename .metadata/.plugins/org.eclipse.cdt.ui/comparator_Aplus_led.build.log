@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project comparator_Aplus_led ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'comparator_Aplus_led.out' is up to date.
+
+**** Build Finished ****

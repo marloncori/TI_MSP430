@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project UART_communication_2553 ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UART_communication_2553.out' is up to date.
+
+**** Build Finished ****

@@ -1,0 +1,67 @@
+
+**** Build of configuration Debug for project LCD_2_btn_counter ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../clock.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/LCD_2_btn_counter" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="clock.d_raw"  "../clock.c"
+'Finished building: "../clock.c"'
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/LCD_2_btn_counter" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 141: remark #2553-D: (ULP 14.1) Array index (involving "led") of type "int". Recommend using "unsigned int"
+'Finished building: "../main.c"'
+ 
+'Building file: "../lcd.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/LCD_2_btn_counter" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lcd.d_raw"  "../lcd.c"
+"../lcd.c", line 71: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../lcd.c", line 76: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../lcd.c", line 79: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../lcd.c", line 82: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../lcd.c", line 87: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../lcd.c", line 100: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 102: remark #2553-D: (ULP 14.1) Array index (involving "Delay") of type "long". Recommend using "unsigned long"
+"../lcd.c", line 696: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 699: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 702: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 705: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 711: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 714: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 717: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 718: warning #1696-D: multicharacter character literal (potential portability problem)
+"../lcd.c", line 788: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../lcd.c", line 793: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 796: remark #1530-D: (ULP 5.1) Detected divide operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 805: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 827: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../lcd.c", line 827: remark #2553-D: (ULP 14.1) Array index (involving "decimales") of type "int". Recommend using "unsigned int"
+"../lcd.c", line 830: remark #1533-D: (ULP 6.1) Detected use of multiplication on a device that has no hardware multiplier
+"../lcd.c", line 864: remark #2553-D: (ULP 14.1) Array index (involving "num") of type "int". Recommend using "unsigned int"
+"../lcd.c", line 877: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 899: remark #2553-D: (ULP 14.1) Array index (involving "num") of type "int". Recommend using "unsigned int"
+"../lcd.c", line 911: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 945: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 978: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../lcd.c", line 820 (col. 15): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 826 (col. 12): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 827 (col. 12): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 828 (col. 10): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 1174 (col. 33): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 1175 (col. 34): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 1182 (col. 30): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../lcd.c", line 1183 (col. 31): remark #1531-D: (ULP 5.2) Detected floating point operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+'Finished building: "../lcd.c"'
+ 
+'Building target: "LCD_2_btn_counter.out"'
+'Invoking: MSP430 Linker'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"LCD_2_btn_counter.map" --heap_size=80 --stack_size=80 -i"C:/ti/ccs740/ccsv7/ccs_base/msp430/include" -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="LCD_2_btn_counter_linkInfo.xml" --use_hw_mpy=none --rom_model -o "LCD_2_btn_counter.out" "./clock.obj" "./lcd.obj" "./main.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: "LCD_2_btn_counter.out"'
+ 
+
+**** Build Finished ****

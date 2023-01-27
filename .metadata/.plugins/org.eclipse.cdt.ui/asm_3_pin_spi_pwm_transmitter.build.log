@@ -1,0 +1,18 @@
+
+**** Build of configuration Debug for project asm_3_pin_spi_pwm_transmitter ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.asm"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --code_model=small --data_model=small --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/asm_3_pin_spi_pwm_transmitter" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.asm"
+'Finished building: "../main.asm"'
+ 
+'Building target: "asm_3_pin_spi_pwm_transmitter.out"'
+'Invoking: MSP430 Linker'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --code_model=small --data_model=small --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"asm_3_pin_spi_pwm_transmitter.map" --heap_size=0 --stack_size=0 -i"C:/ti/ccs740/ccsv7/ccs_base/msp430/include" -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="asm_3_pin_spi_pwm_transmitter_linkInfo.xml" --entry_point=RESET --use_hw_mpy=none -o "asm_3_pin_spi_pwm_transmitter.out" "./main.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "asm_3_pin_spi_pwm_transmitter.out"'
+ 
+
+**** Build Finished ****

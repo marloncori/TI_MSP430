@@ -1,0 +1,56 @@
+
+**** Build of configuration Debug for project asm_two_btn_leds ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.asm"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --code_model=small --data_model=small --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/asm_two_btn_leds" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.asm"
+12 Assembly Errors, No Assembly Warnings
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.asm", ERROR!   at line 26: [E0002] Illegal mnemonic specified
+	 init:		mov.b	#0xFF, &P2DIR			; P3.0 - P3.7 as output
+
+"../main.asm", ERROR!   at line 29: [E0002] Illegal mnemonic specified
+	 check:		bit.b	#0x02, &P1IN     		; check P1.1 button state
+
+"../main.asm", ERROR!   at line 30: [E0001] Undefined symbol
+	 			jnz		check
+
+"../main.asm", ERROR!   at line 32: [E0002] Illegal mnemonic specified
+	 mainLoop:	mov.b	#0x01, R4
+
+"../main.asm", ERROR!   at line 33: [E0002] Illegal mnemonic specified
+	 subLoop:	mov.b	R4, &P2OUT
+
+"../main.asm", ERROR!   at line 35: [E0002] Illegal mnemonic specified
+	 wait:		mov.w	#065000, R5
+
+"../main.asm", ERROR!   at line 36: [E0002] Illegal mnemonic specified
+	 for:		dec.w	R5
+
+"../main.asm", ERROR!   at line 37: [E0001] Undefined symbol
+	 			jnz		for
+
+"../main.asm", ERROR!   at line 40: [E0001] Undefined symbol
+	 			jz		check
+
+"../main.asm", ERROR!   at line 44: [E0001] Undefined symbol
+	 			jz		mainLoop
+
+"../main.asm", ERROR!   at line 45: [E0001] Undefined symbol
+	 			jmp		subLoop
+
+"../main.asm", ERROR!   at EOF: [E0300] The following symbols are undefined:
+  for
+  subLoop
+  check
+  mainLoop
+
+Errors in Source - Assembler Aborted
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

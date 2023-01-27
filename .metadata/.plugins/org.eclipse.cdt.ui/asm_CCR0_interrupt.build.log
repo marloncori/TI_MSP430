@@ -1,0 +1,26 @@
+
+**** Build of configuration Debug for project asm_CCR0_interrupt ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.asm"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --code_model=small --data_model=small --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/asm_CCR0_interrupt" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.asm"
+2 Assembly Errors, No Assembly Warnings
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.asm", ERROR!   at line 39: [E0002] Illegal mnemonic specified
+	TACCR0 ISR 	xor.b 	#BIT0, &P1OUT 			; toggle LED
+
+"../main.asm", REMARK   at line 39: [R0001] After symbol substitution the line became:
+	TA0CCR0 ISR 	xor.b 	#BIT0, &P1OUT 			; toggle LED
+
+"../main.asm", ERROR!   at EOF: [E0300] The following symbols are undefined:
+  TACCR0_ISR
+
+Errors in Source - Assembler Aborted
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

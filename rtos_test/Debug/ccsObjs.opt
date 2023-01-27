@@ -1,0 +1,1 @@
+"./Clock.obj" "./Flash.obj" "./GPIO.obj" "./IE.obj" "./TimerA.obj" "./WatchDog.obj" "./lcd.obj" "./main.obj" "./procesos.obj" "../lnk_msp430g2553.cmd" -llibc.a 

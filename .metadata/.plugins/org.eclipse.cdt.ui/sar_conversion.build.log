@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project sar_conversion ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'sar_conversion.out' is up to date.
+
+**** Build Finished ****

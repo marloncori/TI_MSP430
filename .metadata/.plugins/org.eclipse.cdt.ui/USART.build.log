@@ -1,0 +1,48 @@
+
+**** Build of configuration Debug for project USART ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.asm"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --code_model=small --data_model=small --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/USART" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.asm"
+2 Assembly Errors, 4 Assembly Warnings
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.asm", WARNING! at line 38: [W1500] warning:  relocation template 275 not found; returning OFR_INVALID
+	SetupUART0:	bis.b	#UTXE0+URXE0,&ME1 		; Enable USART0 TXD/RXD
+
+"../main.asm", WARNING! at line 38: [W1500] warning:  relocation template 275 not found; returning OFR_INVALID
+	SetupUART0:	bis.b	#UTXE0+URXE0,&ME1 		; Enable USART0 TXD/RXD
+
+"../main.asm", WARNING! at line 38: [W1500] warning:  relocation template 258 not found; returning OFR_INVALID
+	SetupUART0:	bis.b	#UTXE0+URXE0,&ME1 		; Enable USART0 TXD/RXD
+
+"../main.asm", ERROR!   at line 39: [E0200] Unable to resolve this relocatable expression; relocation support for arbitrary expressions is not available in the C6000 EABI
+				bis.b 	#CHAR,&UCTL0 			; 8-bit characters
+
+"../main.asm", WARNING! at line 39: [W1500] warning:  relocation template 280 not found; returning OFR_INVALID
+				bis.b 	#CHAR,&UCTL0 			; 8-bit characters
+
+"../main.asm", ERROR!   at EOF: [E0300] The following symbols are undefined:
+  URXE0
+  UBR10
+  RXBUF0
+  UBR00
+  TXBUF0
+  ME1
+  SWRST
+  UMCTL0
+  UTCTL0
+  UCTL0
+  UTXE0
+  SSEL0
+  CHAR
+  UTXIFG0
+
+Errors in Source - Assembler Aborted
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

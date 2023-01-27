@@ -1,0 +1,12 @@
+-----TI-REX started at Sat Oct 15 2022 03:01:20 GMT+0200 (Közép-európai nyári idő)
+Sat, 15 Oct 2022 01:01:32 GMT connect deprecated methodOverride: use method-override npm module instead at app.js:540:21
+ "family": "IPv4",
+        "mac": "0c:54:15:fd:99:e0",
+        "internal": false
+    }
+]
+removing old log file tirex-2022-06-14.log
+removing old log file tirex-2022-06-17.log
+-----TI-REX started at Sat Oct 15 2022 03:01:20 GMT+0200 (Közép-európai nyári idő)
+TIREX server listening on port 55432
+About to exit with code:  0

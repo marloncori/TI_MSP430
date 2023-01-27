@@ -1,0 +1,26 @@
+
+**** Build of configuration Debug for project Universal_serial_interface_interrupt ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/Universal_serial_interface_interrupt" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.c", line 22: error #20: identifier "USICTL0" is undefined
+"../main.c", line 22: error #20: identifier "USIMST" is undefined
+"../main.c", line 23: error #20: identifier "USICTL1" is undefined
+"../main.c", line 23: error #20: identifier "USIIE" is undefined
+"../main.c", line 25: error #20: identifier "USICKTCL" is undefined
+"../main.c", line 25: error #20: identifier "USIDIV_7" is undefined
+"../main.c", line 25: error #20: identifier "USISSEL_1" is undefined
+"../main.c", line 26: error #20: identifier "USISWRST" is undefined
+"../main.c", line 33: warning #2580-D: pragma vector= accepts numeric arguments or "unused_interrupts" but not USI_VECTOR
+"../main.c", line 37: error #20: identifier "USICNT" is undefined
+9 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

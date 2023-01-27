@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project wdt_two_leds_2452 ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'wdt_two_leds_2452.out' is up to date.
+
+**** Build Finished ****

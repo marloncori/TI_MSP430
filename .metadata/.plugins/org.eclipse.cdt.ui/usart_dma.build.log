@@ -1,0 +1,33 @@
+
+**** Build of configuration Debug for project usart_dma ****
+
+"C:\\ti\\ccs740\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="C:/ti/ccs740/ccsv7/ccs_base/msp430/include" --include_path="C:/Users/NUC/workspace_v7/usart_dma" --include_path="C:/ti/ccs740/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.c", line 11: error #20: identifier "UCA1CTL1" is undefined
+"../main.c", line 13: error #20: identifier "UCA1BR0" is undefined
+"../main.c", line 14: error #20: identifier "UCA1BR1" is undefined
+"../main.c", line 15: error #20: identifier "UCA1MCTL" is undefined
+"../main.c", line 21: error #20: identifier "DMACTL0" is undefined
+"../main.c", line 21: error #20: identifier "DMA0TSEL_10" is undefined
+"../main.c", line 22: error #20: identifier "DMA0SA" is undefined
+"../main.c", line 23: error #20: identifier "DMA0DA" is undefined
+"../main.c", line 23: error #20: identifier "UCA1TXBUF" is undefined
+"../main.c", line 24: error #20: identifier "DMA0SZ" is undefined
+"../main.c", line 25: error #20: identifier "DMA0CTL" is undefined
+"../main.c", line 25: error #20: identifier "DMASRCINCR_3" is undefined
+"../main.c", line 25: error #20: identifier "DMASBDB" is undefined
+"../main.c", line 25: error #20: identifier "DMALEVEL" is undefined
+"../main.c", line 34: error #20: identifier "DMA0CTL" is undefined
+"../main.c", line 34: error #20: identifier "DMAEN" is undefined
+"../main.c", line 36: error #171: expected a declaration
+17 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

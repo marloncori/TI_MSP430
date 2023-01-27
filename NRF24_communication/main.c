@@ -1,0 +1,147 @@
+#include <msp430.h> 
+#include "nrf24.h"
+
+//writing to & reading a desired register
+
+#define MOSI BIT0  //   P2.0
+#define MISO BIT1  //   P2.1
+#define SCLK BIT4  //   P2.4
+#define CE BIT5    // P2.5
+#define CSN BIT3   //P2.3
+//**********************************************************************************************
+unsigned int i, j, k, x;
+
+unsigned char address[6]="selim";
+unsigned char status_reg;
+unsigned char read_reg[5];
+//**********************************************************************************************
+
+void SCLK_Pulse (void);  //To create a clock pulse high low
+void Send_Bit (unsigned int value);     //For sending 1 or zero
+void CE_On (void);  //Chip enable
+void CE_Off (void);  //Chip disable
+void CSN_On (void);     //CSN On
+void CSN_Off (void);    //CSN Off
+void Write_Byte (int content);
+void Instruction_Byte_MSB_First (int content);
+void Read_Byte_MSB_First (int index);
+void Write_Byte_MSB_First(unsigned char content[], int index2);
+//*********************************************************************************************
+
+void main(void)
+{
+
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    //P2DIR &= 0x00 ;
+    P2OUT &= 0x00;
+    P2DIR |= MOSI + SCLK + CE + CSN ;  //Output Pins
+    P2DIR &= ~MISO;
+
+    //CE_On();
+    CSN_On();
+    CSN_Off();
+    Instruction_Byte_MSB_First(W_REGISTER | TX_ADDR);
+    Write_Byte_MSB_First(address,5);
+    CSN_On();
+
+    CSN_Off();
+    Instruction_Byte_MSB_First(R_REGISTER | TX_ADDR);
+    Read_Byte_MSB_First(5); // read 5 bytes
+    CSN_On();
+
+    while(1){}
+}
+
+void SCLK_Pulse (void)
+{
+  P2OUT |= SCLK;//set high with OR 1
+  P2OUT ^= SCLK;//toggle with XOR 1
+}
+
+void Send_Bit (unsigned int value)
+{
+    if (value != 0){
+        P2OUT |= MOSI;
+    }
+    else {
+        P2OUT &= ~MOSI;
+    }
+}
+
+void CE_On (void)
+{
+    P2OUT |= CE;
+}
+
+void CE_Off (void)
+{
+    P2OUT &= ~CE;
+}
+
+void CSN_On (void)
+{
+    P2OUT |= CSN;
+}
+
+void CSN_Off (void)
+{
+    P2OUT &= ~CSN;
+}
+
+void Write_Byte(int content)
+{
+    for (j=0;j<8;j++){
+         x = (content & (1 << j));  //Write to Address
+         Send_Bit(x);
+         SCLK_Pulse();
+    }
+}
+
+void Instruction_Byte_MSB_First(int content)
+{
+
+    for(k=7;k>=0;--k){
+          x = (content & (1 << k));  //Write to Address
+          status_reg <<= 1;
+          Send_Bit(x);
+
+        if ((P2IN & MISO) == 0x02){
+             status_reg |= 0b00000001;
+        }
+        else {
+            status_reg  &= 0b11111110;
+        }
+         SCLK_Pulse();
+    }
+}
+void Read_Byte_MSB_First(int index)
+{
+    for (i=0;i<=(index-1);i++){
+        for (k=0;k<8;k++){
+           read_reg[i] <<= 1;
+
+              if ((P2IN & MISO) == 0x02){
+
+                     //read_reg |= 0b10000000;
+                     read_reg[i] |= 0b00000001;
+              }
+              else {
+                     //read_reg  &= 0b01111111;
+                    read_reg[i]  &= 0b11111110;
+            }
+             SCLK_Pulse();
+       }
+   }
+}
+
+void Write_Byte_MSB_First(unsigned char content[], int index2)
+{
+    for (i=0;i<=(index2-1);i++){
+       for (k=7;k>=0;--k){
+
+         x = (content[i] & (1 << k));  //Write to Address
+         Send_Bit(x);
+         SCLK_Pulse();
+       }
+    }
+}

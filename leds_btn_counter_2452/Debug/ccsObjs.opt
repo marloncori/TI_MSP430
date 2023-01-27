@@ -1,0 +1,1 @@
+"./leds_btn_counter_2452.o" -Wl,--start-group -lmsp430_MSP-EXP430G2553LP_core -lm -Wl,--end-group 
