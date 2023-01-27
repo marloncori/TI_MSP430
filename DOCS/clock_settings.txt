@@ -1,0 +1,28 @@
+Digitally Controlled Oscilator (DCO) Data
+
+           callibration
+              register        address     
+1 MHZ  --> CALBC1_1_MHZ       010FFh
+           CALDCO_1MHZ        010FEh
+8 MHZ  --> CALBC1_8MHZ        010FDh
+           CALDCO_8MHZ        010FCh
+12 MHZ --> CALBC1_12MHZ       010FBh
+           CALDC0_12MHZ       010FAh
+16 MHZ --> CALBC1_16MHZ       010F9h
+           CALDC0_16MHZ       010F8h
+
+// setting the DCO to 1 MHz frequency
+If(CALBC1_1MHZ == 0xFF || CALDCO_1MHZ == 0xFF)
+    while(1);    // Erased callibration data? Trap!
+
+BCSCTL1 = CALBC1_1MHZ; // set range
+DCOCTL  = CALDCO_1MHZ; // set DCO step + modulation
+----------------------------------------------
+Fvlo = 8MHz/counts --> TAR ---> CCRx
+ACLK/8 from VLO
+
+- calibrate VLO during runtime
+- clock Timer_A runs on calibrated 1 MHZ DCO
+- capture with rising edge onf ACLK/8 from VLO
+- Fvlo = 8MHz/counts
+- code library on the web (SLAA340)

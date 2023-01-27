@@ -1,0 +1,16 @@
+----------------------------------------------
+         PIN FUNCTION SELECTION		     |		
+                                             |
+----------------------------------------------
+ FUNCTION | ---- CONTROL BITS, SIGNALS ------|
+          | P1DIR | P1SEL| ADC10AE (INCH.y=1)| 
+----------------------------------------------
+P1.x(0)   | 1 / 0 |  0   |     0             |  
+TA0_TACLK |   0   |  1   |     0             | 
+ACLK      |   1   |  1   |     0             |
+A0        |   x   |  x   |   1 (y = 0)       |
+---------------------------------------------- 
+
+Warning: configure unused I/Os as outputs, and
+assign 1 (high) or 0 (low) to them.
+

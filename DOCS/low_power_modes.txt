@@ -1,0 +1,19 @@
+                   ----------------------------
+                   | MSP430 LOW POWER MODES*  |
+                   ----------------------------
+
+LPM0 -  CPU, MCLK disabled, SMCLK, ACLK active
+---------------------------------------------------------------------------------
+LPM1 -  CPU, MCLK disabled, DCO disabled if not used for SMCLK, ACLK active
+LPM2 -  CPU, MCLK, SMCLK, DCO disabled, ACLK active
+---------------------------------------------------------------------------------
+LPM3 -  CPU, MCLK, SMCLK, DCO disabled, ACLK active 
+        (a kind of timer using the ACLK can wake the MCU up)     
+---------------------------------------------------------------------------------
+LPM4 -	CPU and ALL clocks disabled
+        (only an external interrupt can wake the MCU up in LPM4)
+---------------------------------------------------------------------------------
+
+ * The choice of the corret low power mode depends on what I 
+   need to wake the board up. 
+

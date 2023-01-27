@@ -1,0 +1,6 @@
+
+Arm7        Arm M3
+LPC2148 and LCP1768
+https://www.rhydolabz.com/development-boards-quick-start-boards-c-206_67/arm7-stick-lpc2148-rhydolabz-p-2113.html
+
+https://pl.rs-online.com/web/p/narzedzia-rozwojowe-z-kategorii-mikrokontrolery/7039238

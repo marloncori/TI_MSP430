@@ -1,0 +1,297 @@
+
+#---------------------------------------------------------------#
+# Check also this very good tutorial:				#
+#  http://www.ocfreaks.com/msp430-timer-programming-tutorial/	#
+#---------------------------------------------------------------#	
+
+      =================================================
+      | MSP430G2553 TIMERA0 AND TIMERA1 - PWM SETTING |
+      =================================================
+
+You have to look in the header file for the specific processor. 
+Open the msp430g2553.h and search for TIMER, there you will find 
+all of the definitions.
+
+If not exactly specified if TimerA0 or A1 it is TimerA0, so:
+
+TACTL == TA0CTL
+CCR0 == TACCR0 == TA0CCR0
+CCR1 == TACCR1 == TA0CCR1
+CCTL1 == TACCTL1 == TA0CCTL1
+There are two timer A modules with 3 CC registers each, that means:
+
+TA0.0
+TA0.1
+TA0.2
+TA1.0
+TA1.1
+TA1.2
+
+From each module TAx.1 and TAx.2 share one interrupt vector, 
+TAx.0 has it's own one, so there are four interrupt-vectors:
+
+// Timer 0 A0 interrupt service routine
+#pragma vector = TIMER0_A0_VECTOR
+__interrupt void Timer0_A0_ISR( void )
+{
+  ... // TA0CCR0
+}
+
+
+
+// Timer 0 A1 interrupt service routine
+#pragma vector = TIMER0_A1_VECTOR
+__interrupt void Timer0_A1_ISR( void )
+{
+  switch( TA0IV )
+  {
+    case 2: // TA0CCR1
+    {
+      break;
+    }
+
+    case 4: // TA0CCR2
+    {
+      break;
+    }
+
+    case 10: // Overflow - TA0IFG
+    {
+      break;
+    }
+  }
+}
+
+
+
+// Timer 1 A0 interrupt service routine
+#pragma vector = TIMER1_A0_VECTOR
+__interrupt void Timer1_A0_ISR( void )
+{
+  ... // TA1CCR0
+}
+
+
+
+// Timer 1 A1 interrupt service routine
+#pragma vector = TIMER1_A1_VECTOR
+__interrupt void Timer1_A1_ISR( void )
+{
+  switch( TA1IV )
+  {
+    case 2: // TA1CCR1
+    {
+      break;
+    }
+
+    case 4: // TA1CCR2
+    {
+      break;
+    }
+
+    case 10: // Overflow - TA1IFG
+    {
+      break;
+    }
+  }
+}
+
+As you can see, even the ISR-vector-names are a little bit confusing...
+I know that you are not using the ISRs, but I explain it anyway.
+
+Each module has one CTL-register to set the basic operation of the module, 
+so there are:
+
+TA0CTL
+TA1CTL
+
+With these registers you set one module for counting up/down/etc. and the input 
+divider and the clock source. This gives you the possibility to source both 
+modules from different clocks, like Timer A0 from an LFXT for counting seconds 
+or anything else and the other one to SMCLK for example to do any other thing.
+
+Now there are the capture-compare-registers, three for TimerA0 and three for 
+TimerA1:
+
+TA0CCR0
+TA0CCR1
+TA0CCR2
+
+TA1CCR0
+TA1CCR1
+TA1CCR2
+
+and the control-registers for the capture-compare-modes, again three for every 
+module:
+
+TA0CCTL0
+TA0CCTL1
+TA0CCTL2
+
+TA1CCTL0
+TA1CCTL1
+TA1CCTL2
+
+The CCRx-registers set the timer-value at which the event takes place. 
+These are 16-bit-registers, so the value can be an integer between 0 and 65535. 
+
+The CCTLx-registers set the operating mode of each modules channel. 
+For example you can set the CCIE-bit to enter the corresponding ISR and 
+do some stuff if the TA0R-timer-value (for module TA0) or the TA1R-timer-value 
+(for module TA1) matches the preset value in CCRx.
+
+So you can have six independent events. For example sourcing TA0 from 
+LFXT 32k768-crystal, setting TA0CCR1 to 32768 in continous mode and enable 
+the CCIE in TA0CCTL1. Add 32768 to TA1CCR1 in the ISR. This will result in 
+having an interrupt every second.
+
+As you can see there is also the overflow interrupt which kicks in if the 
+TAIE bit is set in TA0CTL or TA1CTL and the TAR-registers flow over. 
+This overflow also shares the interrupt-vector with CCR1 and CCR2.
+
+You can now use the ISRs to set and reset a specific port-pin, 
+but this needs code and execution-time. The MSP has the ability to do 
+this completely in hardware, by setting the OUTMOD, as you already tried to do. 
+
+In the datasheet you can see, which pin is associated to which timer. 
+This is ideal for generating a PWM.
+
+For the MSP430G2553 (PW20/N20) this is:
+
+P1.1 - TA0.0 - TA0CCR0
+P1.2 - TA0.1 - TA0CCR1
+
+P1.5 - TA0.0 - TA0CCR0
+P1.6 - TA0.1 - TA0CCR1
+
+P2.0 - TA1.0 - TA1CCR0
+P2.1 - TA1.1 - TA1CCR1
+
+P2.2 - TA1.1 - TA1CCR1
+P2.3 - TA1.0 - TA1CCR0
+
+P2.4 - TA1.2 - TA1CCR2
+P2.5 - TA1.2 - TA1CCR2
+
+Taking OUTMOD_7 in timer UP-mode for a PWM does the following: 
+Set the pin high if counting to CCR0 and reset it to low when 
+reaching CCR1 (could be CCR2, too, of course). 
+
+So CCR0 sets your period and CCR1 sets the duty-cycle of the PWM-signal. 
+As you can see, CCR0 should be greater than CCR1. And the other thing you 
+can see: CCR0 sets the period for both CCR1 and CCR2. 
+
+This is why CCR0 always is something "special" and even has it's own ISR.
+Now you are free to chose which pin you want to use. Let's take TA1 
+(second timer module) and from this module we take CCR1 for setting 
+our duty-cycle. We can now choose between P2.1 and P2.2 - so let's take P2.1 
+on pin 9 of the MCU. This pin is set to GPIO-function and as an input after 
+startup. 
+
+We want it to be linked to the timer-module, so we will look at the datasheet 
+and find on page 51, that the P2.1 is connected to the timer by setting 
+the following:
+
+P2DIR  |=  0x02; // Set P2.1 to output-direction
+P2SEL  |=  0x02; // Set selection register 1 for timer-function
+P2SEL2 &= ~0x02; // Clear selection register 2 for timer
+
+Now we have to set up the timer. Let's source it from SMCLK with the 
+calibrated 1MHz DCO-clock. We set:
+
+TA1CCTL1 = OUTMOD_7;          // Reset/set
+TA1CCR0  = 20000;             // Period
+TA1CCR1  = 1500;              // Duty-cycle
+TA1CTL   = (TASSEL_2 | MC_1); // SMCLK, timer in up-mode
+
+This will give us a signal with a period of about 20ms with a duty-cycle 
+of 1.5ms - hey, perfect to drive a RC-servo!
+
+Now let's make a program from that:
+
+
+#include "msp430g2553.h"
+
+void ConfigWatchDog(void);
+void ConfigClock(void);
+void ConfigPin(void);
+void ConfigPWM(void);
+
+void main( void )
+{
+  ConfigWatchDog();
+  ConfigClock();
+  ConfigPin();
+  ConfigPWM();
+
+  while( 1 )                     // Endless-loop (main-program)
+  {
+                                 // Do nothing, hardware-based PWM
+  }
+}
+
+void ConfigWatchDog(void){
+  WDTCTL    = WDTPW | WDTHOLD;   // Stop watchdog timer
+}
+
+void ConfigClock(void){
+  BCSCTL1   = CALBC1_1MHZ;       // Set DCO range
+  DCOCTL    = CALDCO_1MHZ;       // Set DCO step and modulation
+}
+
+void ConfigPin(void){
+  P2DIR    |=  0x02;             // Set P2.1 to output-direction
+  P2SEL    |=  0x02;             // Set selection register 1 for timer-function
+  P2SEL2   &= ~0x02;             // Clear selection register 2 for timer-function (not needed, as it is 0 after startup)
+}
+
+void ConfigPWM(void){
+  TA1CCTL1  = OUTMOD_7;          // Reset/set
+  TA1CCR0   = 20000;             // Period
+  TA1CCR1   = 1500;              // Duty-cycle
+  TA1CTL    = (TASSEL_2 | MC_1); // SMCLK, timer in up-mode
+}
+
+---------------------------------------
+
+#include "msp430g2452.h"
+
+void main( void )
+{
+  WDTCTL    = WDTPW | WDTHOLD;   // Stop watchdog timer
+
+  BCSCTL1   = CALBC1_1MHZ;       // Set DCO range
+  DCOCTL    = CALDCO_1MHZ;       // Set DCO step and modulation
+
+  P1DIR    |=  0x04;             // Set P1.2 to output-direction
+  P1SEL    |=  0x04;             // Set selection register 1 for timer-function
+  P1SEL2   &= ~0x04;             // Clear selection register 2 for timer-function (not needed, as it is 0 after startup)
+
+  TA0CCTL1  = OUTMOD_7;          // Reset/set
+  TA0CCR0   = 20000;             // Period
+  TA0CCR1   = 1500;              // Duty-cycle
+  TA0CTL    = (TASSEL_2 | MC_1); // SMCLK, timer in up-mode
+  
+  while( 1 )                     // Endless-loop (main-program)
+  {
+                                 // Do nothing, hardware-based PWM
+  }
+}
+
+/*--------------------------------------------------------------------
+* For a 1 MHz clock, input divider 8, up-down-mode, 
+* TACCR0 can be set to 62499 to obtain 0.5 to up limit
+* plus another 0.5 to lower boundary, generating a 1 sec delay.
+*--------------------------------------------------------------------
+* If I used a counter to get track of how many timer the up 
+* and down overflow have occured, all I have to do is incrementing it
+* in the ISR and check it is value still in the ISR (OVCount == 2),
+* for a two second delay, or (OVCount == 5) for five seconds and so on.
+*---------------------------------------------------------------------
+* For a 6 MHz clock and ID_3 (divider 8), I obtain TACCR0 = 46874
+* for a 0.0625 overflow time, what means 0.0625 * 16 = 1 second,
+* so all I have to do is incrementing a counter in the ISR and check 
+* whether it is value has reached 16 (OVCount == 16) for a 1 sec delay
+* or 32 for a 2 sec or 64 for a 4 second delay and so on.
+* ---------------------------------------------------------------------*/
+
